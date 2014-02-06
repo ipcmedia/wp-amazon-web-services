@@ -17,11 +17,17 @@
 		<?php printf( __( 'Once you&#8217;ve signed up, you will need to <a href="%s">create a new IAM user</a> and grant access to the specific services which this plugin will use (e.g. S3).', 'amazon-web-services' ), 'https://console.aws.amazon.com/iam/home?region=us-east-1#users' ); ?>
 	</p>
 	<p>
-		<?php _e( 'Once the user has been created, you will be presented with a couple of keys. Copy the folowing code to your wp-config.php and replace the stars with the keys.', 'amazon-web-services' ); ?>
+		<?php _e( 'Once the user has been created, you will be presented with a couple of keys. Copy the following code to your wp-config.php and replace the stars with the keys.', 'amazon-web-services' ); ?>
 	</p>
 
 	<pre>define( 'AWS_ACCESS_KEY_ID', '********************' );
 define( 'AWS_SECRET_ACCESS_KEY', '****************************************' );</pre>
+
+    <p>
+        <?php printf( __( 'AWS allows you to use different regions around the world. If you have specified a region in AWS then you will need to define that as well. The regions are in the format of "eu-west-1". For more information look at the <a href="%s">AWS regions and endpoints</a> page', 'amazon-web-services'), 'http://docs.aws.amazon.com/general/latest/gr/rande.html'); ?>
+    </p>
+
+    <pre>define( 'AWS_REGION', '******' );</pre>
 
 	<p class="reveal-form">
 		<?php _e( 'If you&#8217;d rather not to edit your wp-config.php and are ok storing the keys in the database (not recommended), <a href="">click here to reveal a form.</a>', 'amazon-web-services' ); ?>
@@ -43,10 +49,14 @@ define( 'AWS_SECRET_ACCESS_KEY', '****************************************' );</
 		<th width="33%" scope="row"><?php _e( 'Access Key ID:', 'amazon-web-services' ); ?></th>
 		<td><input type="text" name="access_key_id" value="<?php echo esc_attr( $this->get_access_key_id() ); ?>" size="50" autocomplete="off" /></td>
 	</tr>
-	<tr valign="top">
-		<th width="33%" scope="row"><?php _e( 'Secret Access Key:', 'amazon-web-services' ); ?></th>
-		<td><input type="text" name="secret_access_key" value="<?php echo $this->get_secret_access_key() ? '-- not shown --' : ''; ?>" size="50" autocomplete="off" /></td>
-	</tr>
+    <tr valign="top">
+        <th width="33%" scope="row"><?php _e( 'Secret Access Key:', 'amazon-web-services' ); ?></th>
+        <td><input type="text" name="secret_access_key" value="<?php echo $this->get_secret_access_key() ? '-- not shown --' : ''; ?>" size="50" autocomplete="off" /></td>
+    </tr>
+    <tr valign="top">
+        <th width="33%" scope="row"><?php _e( 'Region:', 'amazon-web-services' ); ?></th>
+        <td><input type="text" name="region" value="<?php echo esc_attr($this->get_region())?>" size="50" autocomplete="off" /></td>
+    </tr>
 	<tr valign="top">
 		<td colspan="2">
 			<button type="submit" class="button button-primary"><?php _e( 'Save Changes', 'amazon-web-services' ); ?></button>
