@@ -1,0 +1,16 @@
+{
+    "name"       : "ipcmedia/wp-amazon-web-services",
+    "description": "Houses the Amazon Web Services (AWS) PHP libraries and manages access keys. Required by other AWS plugins.",
+    "homepage"   : "https://github.com/ipcmedia/wp-amazon-web-services/",
+    "type"       : "wordpress-plugin",
+    "license"    : "GPLv3",
+    "authors"    : [
+        {
+            "name"    : "Brad Touesnard",
+            "homepage": "http://deliciousbrains.com/"
+        }
+    ],
+    "require": {
+        "composer/installers": "~1.0"
+    }
+}
