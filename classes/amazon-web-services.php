@@ -88,7 +88,7 @@ class Amazon_Web_Services extends AWS_Plugin_Base {
 		// Make sure $this->settings has been loaded
 		$this->get_settings();
 
-		$post_vars = array( 'access_key_id', 'secret_access_key', 'region' );
+		$post_vars = array( 'access_key_id', 'secret_access_key', 'region', 'proxy' );
 		foreach ( $post_vars as $var ) {
 			if ( !isset( $_POST[$var] ) ) {
 				continue;
@@ -151,6 +151,14 @@ class Amazon_Web_Services extends AWS_Plugin_Base {
         return $this->get_setting('region');
     }
 
+    function get_proxy() {
+        if (defined('AWS_PROXY')) {
+            return AWS_PROXY;
+        }
+
+        return $this->get_setting('proxy');
+    }
+
 	function get_client() {
 		if ( !$this->get_access_key_id() || !$this->get_secret_access_key() ) {
 			return new WP_Error( 'access_keys_missing', sprintf( __( 'You must first <a href="%s">set your AWS access keys</a> to use this addon.', 'amazon-web-services' ), 'admin.php?page=' . $this->plugin_slug ) );
@@ -162,6 +170,12 @@ class Amazon_Web_Services extends AWS_Plugin_Base {
 			    'secret' => $this->get_secret_access_key(),
                 'region' => $this->get_region()
 			);
+
+            // add the extra args for proxy if required
+            if ($this->get_proxy()) {
+                $args['request.options'] = array('proxy' => $this->get_proxy());
+            }
+
 			$args = apply_filters( 'aws_get_client_args', $args );
 			$this->client = Aws::factory( $args );
 		}
