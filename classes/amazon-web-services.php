@@ -165,7 +165,7 @@ class Amazon_Web_Services extends AWS_Plugin_Base {
 
             // add the extra args for proxy if required
             if (defined('WP_PROXY_PORT') && defined('WP_PROXY_HOST')) {
-                $args['request.options'] = array('proxy' => defined('WP_PROXY_HOST').':'.defined('WP_PROXY_PORT'));
+                $args['request.options'] = array('proxy' => WP_PROXY_HOST.':'.WP_PROXY_PORT);
             }
 
 			$args = apply_filters( 'aws_get_client_args', $args );
