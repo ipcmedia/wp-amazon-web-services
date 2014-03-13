@@ -29,12 +29,6 @@ define( 'AWS_SECRET_ACCESS_KEY', '****************************************' );</
 
     <pre>define( 'AWS_REGION', '******' );</pre>
 
-    <p>
-        <?php  printf(__( 'Some setups will require that a proxy is used to access AWS. If you are unsure as to whether you need this then try it first without. If your other AWS plugins are timing out, then you may need this. For more information on how to set a proxy, look at <a href="%s">AWS configuration</a>.', 'amazon-web-services'), 'http://docs.aws.amazon.com/aws-sdk-php/guide/latest/configuration.html#using-a-proxy'); ?>
-    </p>
-
-    <pre>define( 'AWS_PROXY', '******:****' );</pre>
-
 	<p class="reveal-form">
 		<?php _e( 'If you&#8217;d rather not to edit your wp-config.php and are ok storing the keys in the database (not recommended), <a href="">click here to reveal a form.</a>', 'amazon-web-services' ); ?>
 	</p>
@@ -62,10 +56,6 @@ define( 'AWS_SECRET_ACCESS_KEY', '****************************************' );</
     <tr valign="top">
         <th width="33%" scope="row"><?php _e( 'Region:', 'amazon-web-services' ); ?></th>
         <td><input type="text" name="region" value="<?php echo esc_attr($this->get_region())?>" size="50" autocomplete="off" /></td>
-    </tr>
-    <tr valign="top">
-        <th width="33%" scope="row"><?php _e( 'Proxy:', 'amazon-web-services' ); ?></th>
-        <td><input type="text" name="proxy" value="<?php echo esc_attr($this->get_proxy())?>" size="50" autocomplete="off" /></td>
     </tr>
 	<tr valign="top">
 		<td colspan="2">
